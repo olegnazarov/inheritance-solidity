@@ -1,3 +1,3 @@
 Solidity Smart Contract of Inheritance.
 
-Implement a smart contract for a grandfather, allowing you to deposit ETH into a master account, enter your grandchildren's information and wish them a happy birthday every year. The gift amount is distributed based on the number of grandchildren equally.
+Implement a smart contract for a grandfather that allows you to deposit ETH into a master account, enter grandchildren's details, and distribute the funds equally based on the number of grandchildren. Funds are withdrawn by requesting each grandchild after the grandchild's birthday.
