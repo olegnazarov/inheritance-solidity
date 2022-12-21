@@ -52,4 +52,18 @@ contract GrandFatherTreasury {
         return address(this).balance;
     }
 
+    function showGrandChildsArray(uint cursor, uint length) public view returns(address[] memory) {
+        address[] memory array = new address[](length);
+        uint grandChildCount2 = 0;
+        for (uint i = cursor; i < cursor+length; i++){
+            array[grandChildCount2] = grandChildsArray[i];
+            grandChildCount2++;
+        }
+        return array;
+    }
+
+    receive() external payable {
+        balance += msg.value;
+    }
+
 }
