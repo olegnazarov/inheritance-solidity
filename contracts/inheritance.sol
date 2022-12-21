@@ -8,7 +8,7 @@ contract GrandFatherTreasury {
     uint8 public grandChildCount;
     address public owner;
 
-    struct Grandhild {
+    struct Grandchild {
         string grandChildName;
         uint256 birthDate;
         bool alreadyWithdraw;
