@@ -2,13 +2,13 @@
 
 pragma solidity 0.8.17;
 
-contract GrandDadTreasury {
+contract GrandFatherTreasury {
 
     uint256 public balance;
     uint8 public grandChildCount;
     address public owner;
 
-    struct Grandchild {
+    struct Grandhild {
         string grandChildName;
         uint256 birthDate;
         bool alreadyWithdraw;
@@ -19,7 +19,7 @@ contract GrandDadTreasury {
 
     mapping(address => Grandchild) public grandChilds;
 
-    constructor {
+    constructor() {
         owner = msg.sender;
         grandChildCount = 0;
     }
@@ -29,12 +29,15 @@ contract GrandDadTreasury {
         _;
     }
 
-    function addGrandChild(address wallet, string grandChildName, uint256 birthDate) public onlyOwner {
+    function addGrandChild(address wallet, string memory grandChildName, uint256 birthDate) public onlyOwner {
         require(birthDate > 0, "Wrong DOB");
-        require(grandChilds[wallet].exist == false, "Wallet already exists");
+        require(grandChilds[wallet].grandChildStatus == false, "Such a grandchild already exists");
         grandChilds[wallet] = Grandchild(grandChildName, birthDate, false, true);
         grandChildsArray.push(wallet);
         grandChildCount++;
     }
 
+    function balanceOf() public view returns(uint256) {
+        return address(this).balance;
+    }
 }
