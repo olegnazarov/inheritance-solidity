@@ -35,6 +35,7 @@ contract GrandFatherTreasury {
         grandChilds[wallet] = Grandchild(grandChildName, birthDate, false, true);
         grandChildsArray.push(wallet);
         grandChildCount++;
+        emit CreateGrandChild(wallet, grandChildName, birthDate);
     }
 
     function withdraw() public {
@@ -45,7 +46,8 @@ contract GrandFatherTreasury {
         uint256 amount = balance / grandChildCount;
         grandChilds[wallet].alreadyWithdraw == true;
         (bool success, ) = wallet.call{value: amount}("");
-        require success;
+        require(success);
+        emit WithdrawCoins(wallet);
     }
 
     function balanceOf() public view returns(uint256) {
@@ -65,5 +67,7 @@ contract GrandFatherTreasury {
     receive() external payable {
         balance += msg.value;
     }
-
-}
+    
+    event CreateGrandChild(address indexed wallet, string grandChildName, uint256 birthDate);
+    event WithdrawCoins(address indexed wallet);
+}   
